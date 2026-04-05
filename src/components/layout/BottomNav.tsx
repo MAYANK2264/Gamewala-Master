@@ -18,20 +18,20 @@ export default function BottomNav({ isAdmin }: { isAdmin: boolean }) {
 
   return (
     <nav className="bottom-nav">
-      <div className="flex items-center justify-around px-2 py-2">
+      <div className="flex items-center justify-around px-2 py-1">
         {links.map(({ href, icon: Icon, label, center }) => {
           const active = pathname === href || pathname.startsWith(href + '/')
           if (center) {
             return (
               <Link key={href} href={href}
-                className="relative -top-5 flex flex-col items-center">
+                className="relative -top-4 flex flex-col items-center">
                 <div className={clsx(
-                  'w-[60px] h-[60px] rounded-full flex items-center justify-center transition-all',
+                  'w-[52px] h-[52px] rounded-full flex items-center justify-center transition-all',
                   active ? 'bg-gradient-to-tr from-brand-red to-brand-red-glow shadow-[0_0_25px_rgba(232,32,42,0.6)]' : 'bg-gradient-to-tr from-brand-red to-brand-red-glow shadow-[0_0_15px_rgba(232,32,42,0.3)]'
                 )}>
-                  <Icon size={28} className="text-white" />
+                  <Icon size={24} className="text-white" />
                 </div>
-                <span className="text-[10px] mt-1.5 text-brand-text font-display font-medium">{label}</span>
+                <span className="text-[9px] mt-1 text-brand-text font-display font-medium">{label}</span>
               </Link>
             )
           }

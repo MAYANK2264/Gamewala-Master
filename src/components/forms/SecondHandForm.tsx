@@ -95,7 +95,7 @@ export default function SecondHandForm({ onBack }: Props) {
             <input value={form.name} onChange={e => set('name', e.target.value)}
               placeholder="e.g. PS4 Pro 1TB" className="input-field" />
           </div>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
               <label className="label">Category</label>
               <select value={form.category} onChange={e => set('category', e.target.value)} className="input-field">
@@ -132,7 +132,7 @@ export default function SecondHandForm({ onBack }: Props) {
         {/* Pricing */}
         <div className="card p-5 space-y-4">
           <p className="font-display font-semibold text-brand-text text-sm">Pricing</p>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
               <label className="label">We're buying at (₹) *</label>
               <input value={form.buyingPrice} onChange={e => set('buyingPrice', e.target.value)}
@@ -144,7 +144,7 @@ export default function SecondHandForm({ onBack }: Props) {
                 type="number" placeholder="18999" className="input-field" inputMode="numeric" />
             </div>
           </div>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
               <label className="label">Original MRP (₹)</label>
               <input value={form.originalPrice} onChange={e => set('originalPrice', e.target.value)}

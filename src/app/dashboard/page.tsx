@@ -73,7 +73,7 @@ export default async function DashboardPage() {
             <h2 className="font-display font-semibold text-sm text-brand-text-dim uppercase tracking-wider">Inventory</h2>
             <Link href="/inventory" className="text-xs text-brand-red">View all →</Link>
           </div>
-          <div className="grid grid-cols-3 gap-2">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
             <Link href="/inventory?type=new" className="card p-3 text-center active:scale-95 transition-all">
               <div className="font-display font-bold text-2xl text-brand-red">{totalNew}</div>
               <div className="text-xs text-brand-text-dim mt-1">New</div>
@@ -95,7 +95,7 @@ export default async function DashboardPage() {
             <h2 className="font-display font-semibold text-sm text-brand-text-dim uppercase tracking-wider">Repair Status</h2>
             <Link href="/repair" className="text-xs text-brand-red">View all →</Link>
           </div>
-          <div className="grid grid-cols-3 gap-2">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
             <div className="card p-3 text-center border-amber-500/20">
               <AlertCircle size={18} className="text-amber-400 mx-auto mb-1" />
               <div className="font-display font-bold text-lg text-amber-400">{repairsPending}</div>

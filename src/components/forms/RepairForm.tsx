@@ -134,7 +134,7 @@ export default function RepairForm({ onBack }: Props) {
         {/* Repair meta */}
         <div className="card p-5 space-y-4">
           <p className="font-display font-semibold text-brand-text text-sm">Repair Details</p>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
               <label className="label">Received Date</label>
               <input value={form.receivedDate} onChange={e => set('receivedDate', e.target.value)}
