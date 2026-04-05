@@ -52,8 +52,7 @@ body {
            px-4 py-3 rounded-2xl transition-all duration-300 active:scale-[0.98];
   }
   .card {
-    @apply bg-brand-dark/40 backdrop-blur-lg border border-brand-border/60 rounded-3xl
-           shadow-xl shadow-black/40 overflow-hidden;
+    @apply bg-brand-dark border border-brand-border rounded-2xl overflow-hidden shadow-xl transition-all;
   }
   .input-field {
     @apply w-full bg-brand-deep/50 border border-brand-border rounded-2xl
@@ -91,7 +90,7 @@ body {
     padding-top: env(safe-area-inset-top);
   }
   .page-content {
-    @apply pt-16 pb-24 min-h-screen;
+    @apply pt-16 pb-24 max-w-full mx-auto px-4 w-full;
   }
 }
 
