@@ -37,9 +37,13 @@ export default function SecondHandForm({ onBack }: Props) {
         body: JSON.stringify(form),
       })
       const data = await res.json()
+      if (res.status === 401) {
+        toast.error('Session expired. Please log in again.', { duration: 4000 })
+        return
+      }
       if (!res.ok) throw new Error(data.error || 'Failed')
       setDone({ id: data.id, qrDataUrl: data.qrDataUrl })
-      toast.success('Second-hand product added!')
+      toast.success('Product added!')
     } catch (e: unknown) {
       toast.error(e instanceof Error ? e.message : 'Failed to save')
     }
@@ -58,12 +62,12 @@ export default function SecondHandForm({ onBack }: Props) {
     <div className="min-h-screen bg-brand-black">
       <AppHeader title="Product Added" />
       <div className="page-content px-4 flex flex-col items-center text-center">
-        <div className="card p-8 w-full max-w-sm">
+        <div className="card p-8 w-full font-display">
           <CheckCircle size={48} className="text-green-400 mx-auto mb-4" />
           <h2 className="font-display font-bold text-2xl text-brand-text mb-1">Done!</h2>
           <p className="text-brand-text-dim text-sm mb-6">{form.name} added to second-hand inventory.</p>
           <div className="bg-white rounded-2xl p-4 mb-4">
-            <img src={done.qrDataUrl} alt="QR" className="w-full max-w-[200px] mx-auto" />
+            <img src={done.qrDataUrl} alt="QR" className="w-full h-auto mx-auto" />
           </div>
           <p className="font-mono text-xs text-brand-muted mb-6 bg-brand-dark rounded-lg px-3 py-2">{done.id}</p>
           <div className="space-y-3">

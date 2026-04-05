@@ -67,9 +67,12 @@ export default async function DashboardPage() {
           </Link>
         </div>
 
-        {/* Inventory stats */}
+        {/* Inventory stats - Show only relevant parts for employees */}
         <div>
-          <h2 className="font-display font-semibold text-sm text-brand-text-dim uppercase tracking-wider mb-3">Inventory</h2>
+          <div className="flex items-center justify-between mb-3">
+            <h2 className="font-display font-semibold text-sm text-brand-text-dim uppercase tracking-wider">Inventory</h2>
+            <Link href="/inventory" className="text-xs text-brand-red">View all →</Link>
+          </div>
           <div className="grid grid-cols-3 gap-2">
             <Link href="/inventory?type=new" className="card p-3 text-center active:scale-95 transition-all">
               <div className="font-display font-bold text-2xl text-brand-red">{totalNew}</div>
@@ -77,12 +80,12 @@ export default async function DashboardPage() {
             </Link>
             <Link href="/inventory?type=secondhand" className="card p-3 text-center active:scale-95 transition-all">
               <div className="font-display font-bold text-2xl text-brand-yellow">{totalUsed}</div>
-              <div className="text-xs text-brand-text-dim mt-1">Second-hand</div>
+              <div className="text-xs text-brand-text-dim mt-1">Used</div>
             </Link>
-            <Link href="/repair" className="card p-3 text-center active:scale-95 transition-all">
+            <div className="card p-3 text-center">
               <div className="font-display font-bold text-2xl text-indigo-400">{repairs.length}</div>
               <div className="text-xs text-brand-text-dim mt-1">Repairs</div>
-            </Link>
+            </div>
           </div>
         </div>
 
@@ -111,12 +114,12 @@ export default async function DashboardPage() {
           </div>
         </div>
 
-        {/* My tasks */}
+        {/* My tasks/Open tasks */}
         {myTasks.length > 0 && (
           <div>
             <div className="flex items-center justify-between mb-3">
               <h2 className="font-display font-semibold text-sm text-brand-text-dim uppercase tracking-wider">
-                {session.role === 'admin' ? 'Open Tasks' : 'My Tasks'}
+                {session.role === 'admin' ? 'Open Tasks' : 'My Assigned Tasks'}
               </h2>
               {session.role === 'admin' && (
                 <Link href="/admin/tasks" className="text-xs text-brand-red">Manage →</Link>
@@ -131,11 +134,8 @@ export default async function DashboardPage() {
                   }`} />
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium text-brand-text truncate">{task.title}</p>
-                    <p className="text-xs text-brand-text-dim mt-0.5">{task.assigned_to || task.assignedTo}</p>
+                    <p className="text-xs text-brand-text-dim mt-0.5">Assigned to: {task.assigned_to || task.assignedTo}</p>
                   </div>
-                  {task.due_date && (
-                    <span className="text-xs text-brand-muted shrink-0">{task.due_date}</span>
-                  )}
                 </div>
               ))}
             </div>

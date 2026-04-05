@@ -15,7 +15,8 @@ export async function POST(req: NextRequest) {
       const token = await createToken({ userId: 'admin', name: 'Admin', role: 'admin' })
       const res = NextResponse.json({ success: true, name: 'Admin', role: 'admin' })
       res.cookies.set('gw_session', token, {
-        httpOnly: true, secure: process.env.NODE_ENV === 'production',
+        httpOnly: true, 
+        secure: process.env.NODE_ENV === 'production' || req.headers.get('x-forwarded-proto') === 'https',
         sameSite: 'lax', maxAge: 60 * 60 * 12, path: '/',
       })
       return res
@@ -37,7 +38,8 @@ export async function POST(req: NextRequest) {
       const token = await createToken({ userId: user.id, name: user.name, role: user.role })
       const res = NextResponse.json({ success: true, name: user.name, role: user.role })
       res.cookies.set('gw_session', token, {
-        httpOnly: true, secure: process.env.NODE_ENV === 'production',
+        httpOnly: true, 
+        secure: process.env.NODE_ENV === 'production' || req.headers.get('x-forwarded-proto') === 'https',
         sameSite: 'lax', maxAge: 60 * 60 * 12, path: '/',
       })
       return res

@@ -4,11 +4,10 @@ import type { Session, UserRole } from '@/types'
 
 const JWT_SECRET = process.env.JWT_SECRET || 'dev-secret-change-in-production'
 
+// Using a simplified but secure signing for both Node and Edge
 async function hmac(data: string): Promise<string> {
-  const enc = new TextEncoder()
-  const key = await crypto.subtle.importKey('raw', enc.encode(JWT_SECRET), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign'])
-  const sig = await crypto.subtle.sign('HMAC', key, enc.encode(data))
-  return Buffer.from(sig).toString('base64url')
+  const { createHmac } = await import('crypto')
+  return createHmac('sha256', JWT_SECRET).update(data).digest('base64url')
 }
 
 export async function createToken(session: Omit<Session, 'token'>): Promise<string> {

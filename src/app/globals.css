@@ -14,12 +14,17 @@
 ::-webkit-scrollbar-track { background: #0A0A0B; }
 ::-webkit-scrollbar-thumb { background: #2A2A32; border-radius: 2px; }
 ::selection { background: rgba(232,32,42,0.3); }
-html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
+html { 
+  scroll-behavior: smooth; 
+  -webkit-tap-highlight-color: transparent; 
+  font-size: 16px; /* Explicit base size */
+}
 body { 
   background: radial-gradient(circle at top, #0A0A0C, #050505 80%);
   color: #F0F0F5; 
   overscroll-behavior: none; 
   min-height: 100vh;
+  width: 100%;
 }
 
 /* Prevent iOS bounce on fixed elements */
@@ -32,19 +37,19 @@ body {
 @layer components {
   .btn-primary {
     @apply relative overflow-hidden bg-gradient-to-r from-brand-red to-brand-red-glow
-           text-white font-display font-semibold px-5 py-3 rounded-2xl
+           text-white font-display font-semibold px-5 py-4 rounded-2xl
            shadow-[0_0_20px_rgba(232,32,42,0.3)]
            hover:shadow-[0_0_25px_rgba(232,32,42,0.5)]
            active:scale-[0.98] transition-all duration-300 select-none;
   }
   .btn-secondary {
     @apply bg-brand-dark/80 backdrop-blur-md border border-brand-border hover:border-brand-border-light hover:bg-brand-card
-           text-brand-text font-display font-medium px-5 py-3 rounded-2xl
+           text-brand-text font-display font-medium px-5 py-4 rounded-2xl
            transition-all duration-300 active:scale-[0.98] select-none;
   }
   .btn-ghost {
     @apply text-brand-text-dim hover:text-brand-text hover:bg-brand-card
-           px-4 py-2 rounded-2xl transition-all duration-300 active:scale-[0.98];
+           px-4 py-3 rounded-2xl transition-all duration-300 active:scale-[0.98];
   }
   .card {
     @apply bg-brand-dark/40 backdrop-blur-lg border border-brand-border/60 rounded-3xl
@@ -52,13 +57,13 @@ body {
   }
   .input-field {
     @apply w-full bg-brand-deep/50 border border-brand-border rounded-2xl
-           px-4 py-3.5 text-brand-text placeholder-brand-muted text-sm
+           px-4 py-4 text-brand-text placeholder-brand-muted text-base
            focus:outline-none focus:border-brand-red focus:bg-brand-dark
-           focus:shadow-[0_0_15px_rgba(232,32,42,0.15)]
+           focus:shadow-[0_0_15px_rgba(232,32,42,0.2)]
            transition-all duration-300;
   }
   .label {
-    @apply text-[11px] font-display font-bold uppercase tracking-widest text-brand-muted mb-2 block ml-1;
+    @apply text-[13px] font-display font-bold uppercase tracking-widest text-brand-muted mb-2 block ml-1;
   }
   .badge-new {
     @apply bg-brand-red/15 text-brand-red border border-brand-red/20 text-xs font-display font-bold px-2.5 py-1 rounded-full;
