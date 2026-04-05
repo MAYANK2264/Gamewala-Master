@@ -16,7 +16,7 @@ export async function POST(req: NextRequest) {
       const res = NextResponse.json({ success: true, name: 'Admin', role: 'admin' })
       res.cookies.set('gw_session', token, {
         httpOnly: true, 
-        secure: true, // Always secure for modern mobile browsers + HTTPS tunnels
+        secure: process.env.NODE_ENV === 'production', // Use secure only in production or with HTTPS
         sameSite: 'lax', maxAge: 60 * 60 * 12, path: '/',
       })
       return res
@@ -39,7 +39,7 @@ export async function POST(req: NextRequest) {
       const res = NextResponse.json({ success: true, name: user.name, role: user.role })
       res.cookies.set('gw_session', token, {
         httpOnly: true, 
-        secure: true,
+        secure: process.env.NODE_ENV === 'production',
         sameSite: 'lax', maxAge: 60 * 60 * 12, path: '/',
       })
       return res

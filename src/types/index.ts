@@ -41,6 +41,14 @@ export interface NewProduct {
   sold_at?: string
   soldBy?: string
   sold_by?: string
+  soldTo?: string
+  sold_to?: string
+  soldPrice?: number
+  sold_price?: number
+  customerPhone?: string
+  customer_phone?: string
+  saleNote?: string
+  sale_note?: string
 }
 
 export interface SecondHandProduct {
@@ -87,6 +95,14 @@ export interface SecondHandProduct {
   sold_at?: string
   soldBy?: string
   sold_by?: string
+  soldTo?: string
+  sold_to?: string
+  soldPrice?: number
+  sold_price?: number
+  customerPhone?: string
+  customer_phone?: string
+  saleNote?: string
+  sale_note?: string
 }
 
 export type RepairStatus = 'pending' | 'started' | 'finished' | 'delivered' | 'cancelled'

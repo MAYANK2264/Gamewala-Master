@@ -17,8 +17,8 @@ export function buildQRPayload(id: string, appUrl: string): string {
 export async function generateQRDataUrl(text: string): Promise<string> {
   const QRCode = await import('qrcode')
   return QRCode.toDataURL(text, {
-    width: 300,
-    margin: 2,
+    width: 400,
+    margin: 4,
     color: { dark: '#000000', light: '#ffffff' },
     errorCorrectionLevel: 'H',
   })

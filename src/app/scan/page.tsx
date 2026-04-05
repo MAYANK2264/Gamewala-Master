@@ -37,7 +37,7 @@ function ScanPageContent() {
         scanner = new Html5Qrcode('qr-reader')
         await scanner.start(
           { facingMode: 'environment' },
-          { fps: 10, qrbox: { width: 220, height: 220 } },
+          { fps: 15, qrbox: { width: 280, height: 280 } },
           (decodedText) => {
             // Parse URL or raw ID
             let id = decodedText
