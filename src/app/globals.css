@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-red: #E8202A;
+  --color-yellow: #F5C518;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-top: env(safe-area-inset-top, 0px);
+}
+
+/* Mobile-first scrollbar */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: #0A0A0B; }
+::-webkit-scrollbar-thumb { background: #2A2A32; border-radius: 2px; }
+::selection { background: rgba(232,32,42,0.3); }
+html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
+body { 
+  background: radial-gradient(circle at top, #0A0A0C, #050505 80%);
+  color: #F0F0F5; 
+  overscroll-behavior: none; 
+  min-height: 100vh;
+}
+
+/* Prevent iOS bounce on fixed elements */
+.no-bounce { overscroll-behavior: none; }
+
+/* Safe area padding for notched phones */
+.pb-safe { padding-bottom: calc(env(safe-area-inset-bottom) + 1rem); }
+.pt-safe { padding-top: env(safe-area-inset-top); }
+
+@layer components {
+  .btn-primary {
+    @apply relative overflow-hidden bg-gradient-to-r from-brand-red to-brand-red-glow
+           text-white font-display font-semibold px-5 py-3 rounded-2xl
+           shadow-[0_0_20px_rgba(232,32,42,0.3)]
+           hover:shadow-[0_0_25px_rgba(232,32,42,0.5)]
+           active:scale-[0.98] transition-all duration-300 select-none;
+  }
+  .btn-secondary {
+    @apply bg-brand-dark/80 backdrop-blur-md border border-brand-border hover:border-brand-border-light hover:bg-brand-card
+           text-brand-text font-display font-medium px-5 py-3 rounded-2xl
+           transition-all duration-300 active:scale-[0.98] select-none;
+  }
+  .btn-ghost {
+    @apply text-brand-text-dim hover:text-brand-text hover:bg-brand-card
+           px-4 py-2 rounded-2xl transition-all duration-300 active:scale-[0.98];
+  }
+  .card {
+    @apply bg-brand-dark/40 backdrop-blur-lg border border-brand-border/60 rounded-3xl
+           shadow-xl shadow-black/40 overflow-hidden;
+  }
+  .input-field {
+    @apply w-full bg-brand-deep/50 border border-brand-border rounded-2xl
+           px-4 py-3.5 text-brand-text placeholder-brand-muted text-sm
+           focus:outline-none focus:border-brand-red focus:bg-brand-dark
+           focus:shadow-[0_0_15px_rgba(232,32,42,0.15)]
+           transition-all duration-300;
+  }
+  .label {
+    @apply text-[11px] font-display font-bold uppercase tracking-widest text-brand-muted mb-2 block ml-1;
+  }
+  .badge-new {
+    @apply bg-brand-red/15 text-brand-red border border-brand-red/20 text-xs font-display font-bold px-2.5 py-1 rounded-full;
+  }
+  .badge-used {
+    @apply bg-brand-yellow/15 text-brand-yellow border border-brand-yellow/20 text-xs font-display font-bold px-2.5 py-1 rounded-full;
+  }
+  .badge-repair {
+    @apply bg-indigo-500/15 text-indigo-400 border border-indigo-500/20 text-xs font-display font-bold px-2.5 py-1 rounded-full;
+  }
+  .status-pending  { @apply bg-amber-500/15  text-amber-400  border-amber-500/20; }
+  .status-started  { @apply bg-blue-500/15   text-blue-400   border-blue-500/20; }
+  .status-finished { @apply bg-green-500/15  text-green-400  border-green-500/20; }
+  .status-delivered{ @apply bg-purple-500/15 text-purple-400 border-purple-500/20; }
+  .status-cancelled{ @apply bg-red-500/15    text-red-400    border-red-500/20; }
+
+  /* Bottom nav safe area */
+  .bottom-nav {
+    @apply fixed bottom-0 left-0 right-0 bg-brand-dark/70 backdrop-blur-2xl border-t border-brand-border/50 z-40;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  /* Top header safe area */
+  .app-header {
+    @apply fixed top-0 left-0 right-0 bg-brand-black/60 backdrop-blur-2xl border-b border-brand-border/40 z-40;
+    padding-top: env(safe-area-inset-top);
+  }
+  .page-content {
+    @apply pt-16 pb-24 min-h-screen;
+  }
+}
+
+/* QR scanner viewfinder */
+.qr-scanner-box {
+  position: relative;
+}
+.qr-scanner-box::before,
+.qr-scanner-box::after {
+  content: '';
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-color: #E8202A;
+  border-style: solid;
+  z-index: 10;
+}
+.qr-scanner-box::before { top: 0; left: 0; border-width: 3px 0 0 3px; border-radius: 4px 0 0 0; }
+.qr-scanner-box::after  { bottom: 0; right: 0; border-width: 0 3px 3px 0; border-radius: 0 0 4px 0; }
+
+@keyframes scanLine {
+  0%, 100% { transform: translateY(0); opacity: 0.8; }
+  50% { transform: translateY(200px); opacity: 0.4; }
+}
+.scan-line {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #E8202A, transparent);
+  animation: scanLine 2s ease-in-out infinite;
+}
+
+/* Slide animations */
+@keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes fadeIn  { from { opacity: 0; } to { opacity: 1; } }
+.animate-slide-up { animation: slideUp 0.3s ease-out; }
+.animate-fade-in  { animation: fadeIn  0.2s ease-out; }
